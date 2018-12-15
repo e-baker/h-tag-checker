@@ -99,15 +99,18 @@ class H_Tag_Checker {
 		// Load frontend JS & CSS
 		add_action( 'wp_enqueue_scripts', array( $this, 'enqueue_styles' ), 10 );
 		add_action( 'wp_enqueue_scripts', array( $this, 'enqueue_scripts' ), 10 );
+		
+		// Load the shortcodes
+		new HTC_Shortcodes;
 
 		// Load admin JS & CSS
-		add_action( 'admin_enqueue_scripts', array( $this, 'admin_enqueue_scripts' ), 10, 1 );
-		add_action( 'admin_enqueue_scripts', array( $this, 'admin_enqueue_styles' ), 10, 1 );
+		//add_action( 'admin_enqueue_scripts', array( $this, 'admin_enqueue_scripts' ), 10, 1 );
+		//add_action( 'admin_enqueue_scripts', array( $this, 'admin_enqueue_styles' ), 10, 1 );
 
 		// Load API for generic admin functions
-		if ( is_admin() ) {
+		/*if ( is_admin() ) {
 			$this->admin = new H_Tag_Checker_Admin_API();
-		}
+		}*/
 
 		// Handle localisation
 		$this->load_plugin_textdomain();

@@ -21,12 +21,16 @@ if ( ! defined( 'ABSPATH' ) ) exit;
 
 // Load plugin class files
 require_once( 'includes/class-h-tag-checker.php' );
+require_once( 'includes/class-h-tag-checker-shortcodes.php' );
 require_once( 'includes/class-h-tag-checker-settings.php' );
 
+// Load Vendor Libraries
+require __DIR__ . '/vendor/autoload.php';
+
 // Load plugin libraries
-require_once( 'includes/lib/class-h-tag-checker-admin-api.php' );
-require_once( 'includes/lib/class-h-tag-checker-post-type.php' );
-require_once( 'includes/lib/class-h-tag-checker-taxonomy.php' );
+//require_once( 'includes/lib/class-h-tag-checker-admin-api.php' );
+//require_once( 'includes/lib/class-h-tag-checker-post-type.php' );
+//require_once( 'includes/lib/class-h-tag-checker-taxonomy.php' );
 
 /**
  * Returns the main instance of H_Tag_Checker to prevent the need to use globals.
