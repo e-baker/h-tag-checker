@@ -2,18 +2,18 @@
 /*
  * Plugin Name: H Tag Checker
  * Version: 1.0
- * Plugin URI: http://www.hughlashbrooke.com/
- * Description: This is your starter template for your next WordPress plugin.
- * Author: Hugh Lashbrooke
- * Author URI: http://www.hughlashbrooke.com/
- * Requires at least: 4.0
- * Tested up to: 4.0
+ * Plugin URI: https://ericbaker.me/h-tag-checker
+ * Description: This plugin allows your visitors to check the heading tags on their site.
+ * Author: Eric Baker
+ * Author URI: https://ericbaker.me
+ * Requires at least: 5.0.1
+ * Tested up to: 5.0.1
  *
  * Text Domain: h-tag-checker
  * Domain Path: /lang/
  *
  * @package WordPress
- * @author Hugh Lashbrooke
+ * @author Eric Baker
  * @since 1.0.0
  */
 
