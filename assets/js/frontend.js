@@ -1,9 +1,9 @@
 jQuery( document ).ready( function ( j ) {
+    keepCredits();
 	j('form#htc-form').submit( function( e ) {
         e.preventDefault();
         var input = document.getElementById('htc-url').value;
         var req_url = 'https://plugin.local/wp-content/plugins/h-tag-checker/includes/lib/class-htc-api.php?u=' + encodeURIComponent(input);
-        keepCredits();
         if( validURL(input) ) {
                 j.ajax({
                 type: "GET",
