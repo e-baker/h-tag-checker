@@ -1,23 +1,44 @@
 jQuery( document ).ready( function ( j ) {
-	j('button#htc-analyze').on( 'click touchstart', function( e ) {
+	j('form#htc-form').submit( function( e ) {
+        e.preventDefault();
         var input = document.getElementById('htc-url').value;
-        console.log(input);
-        var req_url = 'https://plugin.local/wp-content/plugins/h-tag-checker/includes/lib/class-htc-request.php?u=' + encodeURIComponent(input);
-        console.log(req_url);
-        j.ajax({
-            type: "GET",
-            url: req_url,
-            dataType: "json",
-            success: function (response) {
-                myFunc( response );
-            },
-            error: function ( err_resp ) {
-                console.log( err_resp );
-            }
-        });
+        var req_url = 'https://plugin.local/wp-content/plugins/h-tag-checker/includes/lib/class-htc-api.php?u=' + encodeURIComponent(input);
+        keepCredits();
+        if( validURL(input) ) {
+                j.ajax({
+                type: "GET",
+                url: req_url,
+                success: function (response) {
+                    updateDivs( response );
+                    keepCredits();
+                },
+                error: function ( err_resp ) {
+                    console.log( 'Error: ' + err_resp.responseText );
+                }
+            });
+        } else {
+            updateDivs( "<h3>Please enter a valid URL.</h3>");
+        }
     });
 
-    function myFunc( resp ) {
-        console.log(resp.h1);
+    function updateDivs( resp ) {
+        console.log( resp );
+        document.getElementById('htc-results').innerHTML = resp;
+    }
+
+    function keepCredits( ) {
+        var credits = j('div#htc-credits');
+        if( credits.is(":hidden") ) {
+            credits.css( 'display', 'block' );
+        }
+    }
+
+    function validURL( string ) {
+        try {
+            new URL(string);
+            return true;
+        } catch (_) {
+            return false;  
+        }
     }
 });

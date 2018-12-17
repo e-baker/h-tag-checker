@@ -8,47 +8,30 @@ class HTC_Request {
 
     public $html = null;
 
-    public $h1s = array();
-
-    public $h2s = array();
+    public $URL = null;
 
     public function __construct( $url ) {
         $this->URL = $url;
         $this->get_page();
-        $this->get_h1();
-        $this->get_h2();
     }
 
     public function get_page(){
         $dom = new Dom;
-        $dom->loadFromUrl( $this->URL );
-        $this->html = $dom;
-    }
-
-    public function get_h1(){
-        $h1s = $this->html->find('h1');
-        foreach ($h1s as $h1) {
-            $heading = $h1->text();
-            array_push( $this->h1s, $heading );
+        if( $dom->loadFromUrl( $this->URL ) ){
+            $this->html = $dom;
+        } else {
+            return "There was an error.";
+            exit;
         }
     }
 
-    public function get_h2(){
-        $h2s = $this->html->find('h2');
-        foreach ($h2s as $h2) {
-            $heading = $h2->text();
-            array_push( $this->h2s, $heading );
+    public function get_el( $element ){
+        $results = array();
+        $els = $this->html->find( $element );
+        foreach ($els as $el) {
+            $heading = strip_tags($el->innerHtml());
+            array_push( $results, $heading );
         }
+        return $results;
     }
-
-    public function return_headers(){
-        return json_encode( array( 'h1' => $this->h1s, 'h2' => $this->h2s ) );
-    }
-}
-
-if ( isset( $_GET['u'] ) ) { // If u variable is set
-    $req = new HTC_Request( $_GET['u'] );
-    print_r($req->return_headers());
-} else {
-    echo "Please set an appropriate url.";
 }
