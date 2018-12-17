@@ -4,8 +4,8 @@
  * Version: 1.0
  * Plugin URI: https://trafficlight.me/h-tag-checker
  * Description: This plugin allows your visitors to check the heading tags on their site.
- * Author: Eric Baker
- * Author URI: https://ericbaker.me
+ * Author: Traffic Light Media
+ * Author URI: https://trafficlight.me
  * Requires at least: 5.0.1
  * Tested up to: 5.0.1
  *
@@ -13,7 +13,7 @@
  * Domain Path: /lang/
  *
  * @package WordPress
- * @author Eric Baker
+ * @author Traffic Light Media
  * @since 1.0.0
  */
 
