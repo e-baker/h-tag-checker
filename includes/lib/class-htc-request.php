@@ -44,6 +44,7 @@ class HTC_Request {
      */
     public function get_page(){
         $dom = new Dom;
+        $dom->loadFromUrl( $this->URL );
         $this->html = $dom;
     }
 
