@@ -2,7 +2,7 @@
 /*
  * Plugin Name: H Tag Checker
  * Version: 1.0
- * Plugin URI: https://ericbaker.me/h-tag-checker
+ * Plugin URI: https://trafficlight.me/h-tag-checker
  * Description: This plugin allows your visitors to check the heading tags on their site.
  * Author: Eric Baker
  * Author URI: https://ericbaker.me
