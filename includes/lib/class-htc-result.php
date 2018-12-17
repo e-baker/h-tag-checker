@@ -2,18 +2,51 @@
 
 class HTC_Result {
 
+    /**
+     * H1 results
+     * @var     array
+     * @since   1.0.0
+     * @access  public
+     */
     public $h1s = array();
 
+    /**
+     * H2 results
+     * @var     array
+     * @since   1.0.0
+     * @access  public
+     */
     public $h2s = array();
 
+    /**
+     * URL for the instance
+     * @var     string
+     * @since   1.0.0
+     * @access  public
+     */
     public $url = null;
 
+    /**
+     * The constructor function for HTC_Result
+     * @since 1.0.0
+     * @access public
+     * 
+     * @param   object $headers An instance of the HTC_Request object
+     * @return  void
+     */
     public function __construct( $headers ) {
         $this->url = $headers->URL;
         $this->h1s = $headers->get_el( 'h1' );
         $this->h2s = $headers->get_el( 'h2' );
     }
 
+    /**
+     * Returns the results.
+     * @since   1.0.0
+     * @access  public
+     * 
+     * @return  string  $output A string with the whole of the results.
+     */
     public function print_result(){
         $output = "<div id='analysis-results'><h3>Heading Tag Results for <a href='{$this->url}' target='_blank' rel='nofollow'>{$this->url}</a>:</h3>";
         $output .= $this->print_els( 'H1', $this->h1s );
@@ -22,6 +55,15 @@ class HTC_Result {
         return $output;
     }
 
+    /**
+     * Returns a result for a specific element
+     * @since 1.0.0
+     * @access private
+     * 
+     * @param   string  $el_type    The type of element being searched (i.e. H1)
+     * @param   array   $els        An array of the elements found
+     * @return  string  The printed results of the elements
+     */
     private function print_els( $el_type, $els ){
         $el_output = "<h4>{$el_type} Headings</h4><ul class='{$el_type}-results'>";
         
@@ -45,6 +87,14 @@ class HTC_Result {
         return $el_output;
     }
 
+    /**
+     * Decideds if the array given has duplicates within
+     * @since 1.0.0
+     * @access private
+     * 
+     * @param   array   $tocheck    The array to check
+     * @return  boolean True if it has duplicates, false if it doesn't.
+     */
     private function has_duplicates( $tocheck ) {
         $has_duplicates = count( $tocheck ) === count( array_unique( $tocheck ) ) ? false : true;
         return $has_duplicates;
