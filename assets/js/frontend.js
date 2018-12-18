@@ -1,9 +1,31 @@
 jQuery( document ).ready( function ( j ) {
     keepCredits();
+    var getUrl = getUrlParam( 'url', 'null');
+    if( getUrl != 'null' ) {
+        j('#htc-url').val( getUrl );
+        getResults();
+    }
+
 	j('form#htc-form').submit( function( e ) {
         e.preventDefault();
         getResults();
     });
+
+    function getUrlVars() {
+        var vars = {};
+        var parts = window.location.href.replace(/[?&]+([^=&]+)=([^&]*)/gi, function(m,key,value) {
+            vars[key] = value;
+        });
+        return vars;
+    }
+
+    function getUrlParam(parameter, defaultvalue){
+        var urlparameter = defaultvalue;
+        if(window.location.href.indexOf(parameter) > -1){
+            urlparameter = getUrlVars()[parameter];
+            }
+        return urlparameter;
+    }
 
     function updateDivs( resp ) {
         document.getElementById('htc-results').innerHTML = resp;
