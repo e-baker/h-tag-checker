@@ -3,8 +3,12 @@ jQuery( document ).ready( function ( j ) {
 	j('form#htc-form').submit( function( e ) {
         e.preventDefault();
         var input = document.getElementById('htc-url').value;
-        var req_url = window.location.origin + '/wp-content/plugins/h-tag-checker/includes/lib/class-htc-api.php?u=' + encodeURIComponent(input);
-        if( validURL(input) ) {
+        if( !includesProtocol( input ) ) { 
+            var defaultProtocol = 'http://';
+            var urlString = defaultProtocol.concat( '', input );
+        }
+        var req_url = window.location.origin + '/wp-content/plugins/h-tag-checker/includes/lib/class-htc-api.php?u=' + encodeURIComponent(urlString);
+        if( validURL(urlString) ) {
                 j.ajax({
                 type: "GET",
                 url: req_url,
@@ -29,6 +33,15 @@ jQuery( document ).ready( function ( j ) {
         var credits = j('div#htc-credits');
         if( credits.is(":hidden") ) {
             credits.css( 'display', 'block' );
+        }
+    }
+
+    function includesProtocol( string ) {
+        var regex = /http/gmi;
+        if ( string.search( regex ) > -1 ) {
+            return true;
+        } else {
+            return false;
         }
     }
 
