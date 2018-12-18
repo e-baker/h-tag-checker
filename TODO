@@ -4,5 +4,5 @@
 * Allow for URLs to be a GET variable
 * Track URLs run
 * Allow error messages to be customized
-* Highlight Duplicates
+* ~~Highlight Duplicates~~
 * Check for > 10 H2 tags
