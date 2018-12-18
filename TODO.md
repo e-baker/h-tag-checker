@@ -8,3 +8,4 @@ TODO
 * ~~Highlight Duplicates~~
 * ~~Check for > 10 H2 tags~~
 * Capture PHP-HTML-Parser errors
+* ~~Check for a website at URL before passing to API~~

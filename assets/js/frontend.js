@@ -4,12 +4,12 @@ jQuery( document ).ready( function ( j ) {
         e.preventDefault();
         var input = document.getElementById('htc-url').value;
         if( !includesProtocol( input ) ) { 
-            var defaultProtocol = 'http://';
-            var urlString = defaultProtocol.concat( '', input );
+            var defaultProtocol = window.location.protocol;
+            var urlString = defaultProtocol.concat( '//', input );
         }
         var req_url = window.location.origin + '/wp-content/plugins/h-tag-checker/includes/lib/class-htc-api.php?u=' + encodeURIComponent(urlString);
-        if( validURL(urlString) ) {
-                j.ajax({
+        if( validURL(urlString) && isAvailable(urlString) ) {
+            j.ajax({
                 type: "GET",
                 url: req_url,
                 success: function (response) {
@@ -57,5 +57,20 @@ jQuery( document ).ready( function ( j ) {
         } else {
             return true;
         }
+    }
+
+    function isAvailable( url ) {
+        var status = null;
+        j.ajax({
+            type: "GET",
+            url: url,
+            success: function (response) {
+                status = true;
+            },
+            error: function ( err_resp ) {
+                status = false;
+            }
+        })
+        return status;
     }
 });
