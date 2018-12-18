@@ -69,14 +69,20 @@ class HTC_Result {
         
         if( count($els) > 0 ) {
             foreach( $els as $el ) {
-                $el_output .= "<li class='{$el_type}-result'>" . $el . "</li>";
+                // Check for duplicate heading. Add class name if it is
+                $count = array_count_values( $els );
+                $count[$el]>1 ? $duplicate_class = 'duplicate-result' : $duplicate_class = '';
+
+                // Output heading
+                $el_output .= "<li class='{$el_type}-result {$duplicate_class}'>" . $el . "</li>";
             }
 
             $el_output .= "<div class='htc-errors'>";
             if( strtolower($el_type) == 'h1' && count($els) > 1 ) { 
                 $el_output .= "<p class='htc-error-msg'>Your page has more than one <a href='https://trafficlight.me/more-than-one-h1-tag'>H1 tag</a>.</p>";
             }
-            $this->has_duplicates( $els ) ? $el_output .= "<p class='htc-error-msg'>Your page has <a href='https://trafficlight.me/duplicate-h-tags'>duplicate {$el_type} tags</a>.</p>" : null;
+            $this->has_duplicates( $els ) ? $el_output .= "<p class='htc-warning-msg'>Your page has <a href='https://trafficlight.me/duplicate-h-tags'>duplicate {$el_type} tags</a>.</p>" : null;
+            if( strtolower($el_type) === 'h2' && count( $els ) > 10 ) { $el_output .= "<p class='htc-warning-msg'>Your page has <a href='https://trafficlight.me/more-than-10-h2-tags'>more than 10 H2 tags</a>.</p>"; }
             $el_output .= "</div>";
         } else {
             $el_output .= "<li class='{$el_type}-result'>There were no {$el_type} tags found on this page.</li>";

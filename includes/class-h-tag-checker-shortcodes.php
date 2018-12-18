@@ -26,7 +26,9 @@ class HTC_Shortcodes {
     public function show_form( ) {
         $output = '<form id="htc-form" method="get"><input id="htc-url" type="text" placeholder="https://trafficlight.me"><button id="htc-analyze">Check Tags</button></form>';
         $output .= '<div id="htc-results">Use the form above to see your results here.</div>';
-        $output .= '<div id="htc-credits"><hr />Brought to you by <a href="https://trafficlight.me/seo-tools/h-tag-checker">Traffic Light Media</a>.</div>';
+        if( get_option( 'htc_credit_link', false ) == 'on' ) {
+            $output .= '<div id="htc-credits"><hr />Brought to you by <a href="https://trafficlight.me/seo-tools/h-tag-checker">Traffic Light Media</a>.</div>';
+        }
         return $output;
     }
 }

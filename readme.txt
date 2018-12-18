@@ -5,22 +5,19 @@ Tags: wordpress, plugin, template
 Requires at least: 4.0
 Tested up to: 5.0.1
 Stable tag: 1.0
-License: GPLv3
-License URI: https://www.gnu.org/licenses/gpl.txt
 
 This plugin allows your visitors to check the heading tags on their site.
 
 == Installation ==
 
 1. Download the plugin via TrafficLight.me
-1. Upload the ZIP file through the 'Plugins > Add New > Upload' screen in your WordPress dashboard
-1. Activate the plugin through the 'Plugins' menu in WordPress
+2. Upload the ZIP file through the 'Plugins > Add New > Upload' screen in your WordPress dashboard
+3. Activate the plugin through the 'Plugins' menu in WordPress
+4. Add the shortcode '[htag-checker]' to whatever page/post you want the checker to appear.
 
 == Screenshots ==
 
-1. Description of first screenshot named screenshot-1
-2. Description of second screenshot named screenshot-2
-3. Description of third screenshot named screenshot-3
+1. H Tag Checker in action.
 
 == Frequently Asked Questions ==
 
@@ -31,5 +28,5 @@ This plugin is designed to allow SEO professionals show their end users what Hea
 == Changelog ==
 
 = 1.0-beta =
-* 2018-12-17
+* 2018-12-18
 * Initial release
