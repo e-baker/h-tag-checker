@@ -10,3 +10,4 @@ TODO
 * Capture PHP-HTML-Parser errors (we need more test cases to be sure this done.)
 * ~~Check for a website at URL before passing to API~~
 * Troubleshoot why some sites give back a 403 Error. Presumbably it's from the agent header.
+* Add option to show "Brought to you by Traffic Light Media"

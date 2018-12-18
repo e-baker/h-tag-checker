@@ -24,6 +24,9 @@ require_once( 'includes/class-h-tag-checker.php' );
 require_once( 'includes/class-h-tag-checker-shortcodes.php' );
 require_once( 'includes/class-h-tag-checker-settings.php' );
 
+// Load Library class files
+require_once( 'includes/lib/class-h-tag-checker-admin-api.php' );
+
 // Load Vendor Libraries
 require __DIR__ . '/vendor/autoload.php';
 

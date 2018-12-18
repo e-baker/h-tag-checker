@@ -5,7 +5,7 @@ if ( ! defined( 'ABSPATH' ) ) exit;
 class H_Tag_Checker_Settings {
 
 	/**
-	 * The single instance of H_Tag_Checker_Settings.
+	 * The single instance of WordPress_Plugin_Template_Settings.
 	 * @var 	object
 	 * @access  private
 	 * @since 	1.0.0
@@ -39,19 +39,19 @@ class H_Tag_Checker_Settings {
 	public function __construct ( $parent ) {
 		$this->parent = $parent;
 
-		$this->base = 'wpt_';
+		$this->base = 'htc_';
 
 		// Initialise settings
 		add_action( 'init', array( $this, 'init_settings' ), 11 );
 
 		// Register plugin settings
-		// add_action( 'admin_init' , array( $this, 'register_settings' ) );
+		add_action( 'admin_init' , array( $this, 'register_settings' ) );
 
 		// Add settings page to menu
-		// add_action( 'admin_menu' , array( $this, 'add_menu_item' ) );
+		add_action( 'admin_menu' , array( $this, 'add_menu_item' ) );
 
 		// Add settings link to plugins page
-		// add_filter( 'plugin_action_links_' . plugin_basename( $this->parent->file ) , array( $this, 'add_settings_link' ) );
+		add_filter( 'plugin_action_links_' . plugin_basename( $this->parent->file ) , array( $this, 'add_settings_link' ) );
 	}
 
 	/**
@@ -67,7 +67,7 @@ class H_Tag_Checker_Settings {
 	 * @return void
 	 */
 	public function add_menu_item () {
-		$page = add_options_page( __( 'Plugin Settings', 'h-tag-checker' ) , __( 'Plugin Settings', 'h-tag-checker' ) , 'manage_options' , $this->parent->_token . '_settings' ,  array( $this, 'settings_page' ) );
+		$page = add_options_page( __( 'H Tag Checker', 'h-tag-checker' ) , __( 'H Tag Checker', 'h-tag-checker' ) , 'manage_options' , $this->parent->_token . '_settings' ,  array( $this, 'settings_page' ) );
 		add_action( 'admin_print_styles-' . $page, array( $this, 'settings_assets' ) );
 	}
 
@@ -79,15 +79,15 @@ class H_Tag_Checker_Settings {
 
 		// We're including the farbtastic script & styles here because they're needed for the colour picker
 		// If you're not including a colour picker field then you can leave these calls out as well as the farbtastic dependency for the wpt-admin-js script below
-		wp_enqueue_style( 'farbtastic' );
-    	wp_enqueue_script( 'farbtastic' );
+		//wp_enqueue_style( 'farbtastic' );
+    	//wp_enqueue_script( 'farbtastic' );
 
     	// We're including the WP media scripts here because they're needed for the image upload field
     	// If you're not including an image upload then you can leave this function call out
-    	wp_enqueue_media();
+    	//wp_enqueue_media();
 
-    	wp_register_script( $this->parent->_token . '-settings-js', $this->parent->assets_url . 'js/settings' . $this->parent->script_suffix . '.js', array( 'farbtastic', 'jquery' ), '1.0.0' );
-    	wp_enqueue_script( $this->parent->_token . '-settings-js' );
+    	//wp_register_script( $this->parent->_token . '-settings-js', $this->parent->assets_url . 'js/settings' . $this->parent->script_suffix . '.js', array( 'farbtastic', 'jquery' ), '1.0.0' );
+    	//wp_enqueue_script( $this->parent->_token . '-settings-js' );
 	}
 
 	/**
@@ -108,109 +108,14 @@ class H_Tag_Checker_Settings {
 	private function settings_fields () {
 
 		$settings['standard'] = array(
-			'title'					=> __( 'Standard', 'h-tag-checker' ),
-			'description'			=> __( 'These are fairly standard form input fields.', 'h-tag-checker' ),
+			//'title'					=> __( 'Standard', 'h-tag-checker' ),
 			'fields'				=> array(
 				array(
-					'id' 			=> 'text_field',
-					'label'			=> __( 'Some Text' , 'h-tag-checker' ),
-					'description'	=> __( 'This is a standard text field.', 'h-tag-checker' ),
-					'type'			=> 'text',
-					'default'		=> '',
-					'placeholder'	=> __( 'Placeholder text', 'h-tag-checker' )
-				),
-				array(
-					'id' 			=> 'password_field',
-					'label'			=> __( 'A Password' , 'h-tag-checker' ),
-					'description'	=> __( 'This is a standard password field.', 'h-tag-checker' ),
-					'type'			=> 'password',
-					'default'		=> '',
-					'placeholder'	=> __( 'Placeholder text', 'h-tag-checker' )
-				),
-				array(
-					'id' 			=> 'secret_text_field',
-					'label'			=> __( 'Some Secret Text' , 'h-tag-checker' ),
-					'description'	=> __( 'This is a secret text field - any data saved here will not be displayed after the page has reloaded, but it will be saved.', 'h-tag-checker' ),
-					'type'			=> 'text_secret',
-					'default'		=> '',
-					'placeholder'	=> __( 'Placeholder text', 'h-tag-checker' )
-				),
-				array(
-					'id' 			=> 'text_block',
-					'label'			=> __( 'A Text Block' , 'h-tag-checker' ),
-					'description'	=> __( 'This is a standard text area.', 'h-tag-checker' ),
-					'type'			=> 'textarea',
-					'default'		=> '',
-					'placeholder'	=> __( 'Placeholder text for this textarea', 'h-tag-checker' )
-				),
-				array(
-					'id' 			=> 'single_checkbox',
-					'label'			=> __( 'An Option', 'h-tag-checker' ),
+					'id' 			=> 'credit_link',
+					'label'			=> __( 'Give us Credit?', 'h-tag-checker' ),
 					'description'	=> __( 'A standard checkbox - if you save this option as checked then it will store the option as \'on\', otherwise it will be an empty string.', 'h-tag-checker' ),
 					'type'			=> 'checkbox',
 					'default'		=> ''
-				),
-				array(
-					'id' 			=> 'select_box',
-					'label'			=> __( 'A Select Box', 'h-tag-checker' ),
-					'description'	=> __( 'A standard select box.', 'h-tag-checker' ),
-					'type'			=> 'select',
-					'options'		=> array( 'drupal' => 'Drupal', 'joomla' => 'Joomla', 'wordpress' => 'WordPress' ),
-					'default'		=> 'wordpress'
-				),
-				array(
-					'id' 			=> 'radio_buttons',
-					'label'			=> __( 'Some Options', 'h-tag-checker' ),
-					'description'	=> __( 'A standard set of radio buttons.', 'h-tag-checker' ),
-					'type'			=> 'radio',
-					'options'		=> array( 'superman' => 'Superman', 'batman' => 'Batman', 'ironman' => 'Iron Man' ),
-					'default'		=> 'batman'
-				),
-				array(
-					'id' 			=> 'multiple_checkboxes',
-					'label'			=> __( 'Some Items', 'h-tag-checker' ),
-					'description'	=> __( 'You can select multiple items and they will be stored as an array.', 'h-tag-checker' ),
-					'type'			=> 'checkbox_multi',
-					'options'		=> array( 'square' => 'Square', 'circle' => 'Circle', 'rectangle' => 'Rectangle', 'triangle' => 'Triangle' ),
-					'default'		=> array( 'circle', 'triangle' )
-				)
-			)
-		);
-
-		$settings['extra'] = array(
-			'title'					=> __( 'Extra', 'h-tag-checker' ),
-			'description'			=> __( 'These are some extra input fields that maybe aren\'t as common as the others.', 'h-tag-checker' ),
-			'fields'				=> array(
-				array(
-					'id' 			=> 'number_field',
-					'label'			=> __( 'A Number' , 'h-tag-checker' ),
-					'description'	=> __( 'This is a standard number field - if this field contains anything other than numbers then the form will not be submitted.', 'h-tag-checker' ),
-					'type'			=> 'number',
-					'default'		=> '',
-					'placeholder'	=> __( '42', 'h-tag-checker' )
-				),
-				array(
-					'id' 			=> 'colour_picker',
-					'label'			=> __( 'Pick a colour', 'h-tag-checker' ),
-					'description'	=> __( 'This uses WordPress\' built-in colour picker - the option is stored as the colour\'s hex code.', 'h-tag-checker' ),
-					'type'			=> 'color',
-					'default'		=> '#21759B'
-				),
-				array(
-					'id' 			=> 'an_image',
-					'label'			=> __( 'An Image' , 'h-tag-checker' ),
-					'description'	=> __( 'This will upload an image to your media library and store the attachment ID in the option field. Once you have uploaded an imge the thumbnail will display above these buttons.', 'h-tag-checker' ),
-					'type'			=> 'image',
-					'default'		=> '',
-					'placeholder'	=> ''
-				),
-				array(
-					'id' 			=> 'multi_select_box',
-					'label'			=> __( 'A Multi-Select Box', 'h-tag-checker' ),
-					'description'	=> __( 'A standard multi-select box - the saved data is stored as an array.', 'h-tag-checker' ),
-					'type'			=> 'select_multi',
-					'options'		=> array( 'linux' => 'Linux', 'mac' => 'Mac', 'windows' => 'Windows' ),
-					'default'		=> array( 'linux' )
 				)
 			)
 		);
@@ -339,14 +244,14 @@ class H_Tag_Checker_Settings {
 	}
 
 	/**
-	 * Main H_Tag_Checker_Settings Instance
+	 * Main WordPress_Plugin_Template_Settings Instance
 	 *
-	 * Ensures only one instance of H_Tag_Checker_Settings is loaded or can be loaded.
+	 * Ensures only one instance of WordPress_Plugin_Template_Settings is loaded or can be loaded.
 	 *
 	 * @since 1.0.0
 	 * @static
-	 * @see H_Tag_Checker()
-	 * @return Main H_Tag_Checker_Settings instance
+	 * @see WordPress_Plugin_Template()
+	 * @return Main WordPress_Plugin_Template_Settings instance
 	 */
 	public static function instance ( $parent ) {
 		if ( is_null( self::$_instance ) ) {
