@@ -24,14 +24,16 @@ function good_url( $url ) {
     $ch = curl_init();
     curl_setopt( $ch, CURLOPT_URL, $url );
     curl_setopt( $ch, CURLOPT_RETURNTRANSFER, 1 );
-    curl_setopt( $ch, CURLOPT_TIMEOUT, 10 );
+    curl_setopt( $ch, CURLOPT_TIMEOUT, 100 );
     $http_res = curl_exec( $ch );
     $http_res = trim( strip_tags( $http_res ) );
     $http_code = curl_getinfo( $ch, CURLINFO_HTTP_CODE );
-    if( $http_code == "200" ) {
+    $code_type = substr($http_code, 1);
+    if(  $code_type === "2" || $code_type === "3" ) {
         return true;
     } else {
-        return false;
+        print("That URL was not available. Error code: {$http_code}");
+        exit;
     }
     curl_close( $ch );
 }

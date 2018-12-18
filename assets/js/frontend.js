@@ -3,12 +3,14 @@ jQuery( document ).ready( function ( j ) {
     var getUrl = getUrlParam( 'url', 'null');
     if( getUrl != 'null' ) {
         j('#htc-url').val( getUrl );
-        getResults();
+        
+        getResults( getUrl );
     }
 
 	j('form#htc-form').submit( function( e ) {
         e.preventDefault();
-        getResults();
+        var url = document.getElementById('htc-url').value;
+        getResults( url );
     });
 
     function getUrlVars() {
@@ -61,11 +63,10 @@ jQuery( document ).ready( function ( j ) {
         }
     }
 
-    function getResults() {
-        var input = document.getElementById('htc-url').value;
-        if( !includesProtocol( input ) ) { 
+    function getResults( urlString ) {
+        if( !includesProtocol( urlString ) ) { 
             var defaultProtocol = window.location.protocol;
-            var urlString = defaultProtocol.concat( '//', input );
+            urlString = defaultProtocol.concat( '//', urlString );
         }
         var req_url = window.location.origin + '/wp-content/plugins/h-tag-checker/includes/lib/class-htc-api.php?u=' + encodeURIComponent(urlString);
         if( validURL(urlString) ) {
