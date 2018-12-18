@@ -85,11 +85,11 @@ module.exports = function( grunt ){
 					archive: 'h-tag-checker.zip'
 				},
 				files: [
-					{src: ['assets/css/*.css'], dest: 'assets/css/', filter: 'isFile'}, // includes css files in css path
-					{src: ['assets/js/*.min.js'], dest: 'assets/js/', filter: 'isFile'}, // includes js files in js path
-					{src: ['includes/*'], dest: 'includes/', filter: 'isFile'}, //includes files in includes path
-					{src: ['lang/*'], dest: 'lang/', filter: 'isFile' }, //includes files in lang path
-					{src: ['vendor/*'], dest: 'vendor/', filter: 'isFile' }, //includes files in lang path
+					{src: ['assets/css/*.css'], dest: '', filter: 'isFile'}, // includes css files in css path
+					{src: ['assets/js/*.min.js'], dest: '', filter: 'isFile'}, // includes js files in js path
+					{src: ['includes/**'], dest: '', filter: 'isFile'}, //includes files in includes path
+					{src: ['lang/*'], dest: '', filter: 'isFile' }, //includes files in lang path
+					{src: ['vendor/**'], dest: '', filter: 'isFile' }, //includes files in lang path
 					{src: ['*.php', 'LICENSE', '*.txt'], filter: 'isFile' }
 				]
 			}
