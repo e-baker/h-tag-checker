@@ -69,7 +69,12 @@ class HTC_Result {
         
         if( count($els) > 0 ) {
             foreach( $els as $el ) {
-                $el_output .= "<li class='{$el_type}-result'>" . $el . "</li>";
+                // Check for duplicate heading. Add class name if it is
+                $count = array_count_values( $els );
+                $count[$el]>1 ? $duplicate_class = 'duplicate-result' : $duplicate_class = '';
+
+                // Output heading
+                $el_output .= "<li class='{$el_type}-result {$duplicate_class}'>" . $el . "</li>";
             }
 
             $el_output .= "<div class='htc-errors'>";
