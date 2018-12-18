@@ -5,4 +5,4 @@
 * Track URLs run
 * Allow error messages to be customized
 * ~~Highlight Duplicates~~
-* Check for > 10 H2 tags
+* ~~Check for > 10 H2 tags~~
