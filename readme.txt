@@ -1,24 +1,16 @@
 === H Tag Checker ===
-Contributors: hlashbrooke
-Donate link: http://www.hughlashbrooke.com/donate
+Contributors: e-baker, hlashbrooke
+Donate link: https://trafficlight.me/wordpress-plugins/h-tag-checker
 Tags: wordpress, plugin, template
-Requires at least: 3.9
-Tested up to: 4.0
+Requires at least: 5.0.1
+Tested up to: 5.0.1
 Stable tag: 1.0
-License: GPLv2 or later
-License URI: http://www.gnu.org/licenses/gpl-2.0.html
 
-This is where you craft a short, punchy description of your plugin
-
-== Description ==
-
-This is where you can give a much longer description of your plugin that you can use to explain just how it awesome it really is.
+This plugin allows your visitors to check the heading tags on their site.
 
 == Installation ==
 
-Installing "H Tag Checker" can be done either by searching for "H Tag Checker" via the "Plugins > Add New" screen in your WordPress dashboard, or by using the following steps:
-
-1. Download the plugin via WordPress.org
+1. Download the plugin via TrafficLight.me
 1. Upload the ZIP file through the 'Plugins > Add New > Upload' screen in your WordPress dashboard
 1. Activate the plugin through the 'Plugins' menu in WordPress
 
@@ -30,18 +22,12 @@ Installing "H Tag Checker" can be done either by searching for "H Tag Checker" v
 
 == Frequently Asked Questions ==
 
-= What is the plugin template for? =
+= What is the plugin used for? =
 
-This plugin template is designed to help you get started with any new WordPress plugin.
+This plugin is designed to allow SEO professionals show their end users what Heading (H) tags are in use on their site.
 
 == Changelog ==
 
 = 1.0 =
-* 2012-12-13
-* Initial release
-
-== Upgrade Notice ==
-
-= 1.0 =
-* 2012-12-13
+* 2018-12-17
 * Initial release

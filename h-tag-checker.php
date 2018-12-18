@@ -2,18 +2,18 @@
 /*
  * Plugin Name: H Tag Checker
  * Version: 1.0
- * Plugin URI: http://www.hughlashbrooke.com/
- * Description: This is your starter template for your next WordPress plugin.
- * Author: Hugh Lashbrooke
- * Author URI: http://www.hughlashbrooke.com/
- * Requires at least: 4.0
- * Tested up to: 4.0
+ * Plugin URI: https://trafficlight.me/h-tag-checker
+ * Description: This plugin allows your visitors to check the heading tags on their site.
+ * Author: Traffic Light Media
+ * Author URI: https://trafficlight.me
+ * Requires at least: 5.0.1
+ * Tested up to: 5.0.1
  *
  * Text Domain: h-tag-checker
  * Domain Path: /lang/
  *
  * @package WordPress
- * @author Hugh Lashbrooke
+ * @author Traffic Light Media
  * @since 1.0.0
  */
 
@@ -21,12 +21,11 @@ if ( ! defined( 'ABSPATH' ) ) exit;
 
 // Load plugin class files
 require_once( 'includes/class-h-tag-checker.php' );
+require_once( 'includes/class-h-tag-checker-shortcodes.php' );
 require_once( 'includes/class-h-tag-checker-settings.php' );
 
-// Load plugin libraries
-require_once( 'includes/lib/class-h-tag-checker-admin-api.php' );
-require_once( 'includes/lib/class-h-tag-checker-post-type.php' );
-require_once( 'includes/lib/class-h-tag-checker-taxonomy.php' );
+// Load Vendor Libraries
+require __DIR__ . '/vendor/autoload.php';
 
 /**
  * Returns the main instance of H_Tag_Checker to prevent the need to use globals.
