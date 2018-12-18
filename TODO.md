@@ -7,3 +7,4 @@ TODO
 * Allow error messages to be customized
 * ~~Highlight Duplicates~~
 * ~~Check for > 10 H2 tags~~
+* Capture PHP-HTML-Parser errors
