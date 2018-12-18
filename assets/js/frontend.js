@@ -40,15 +40,6 @@ jQuery( document ).ready( function ( j ) {
         }
     }
 
-    function includesProtocol( string ) {
-        var regex = /http/gmi;
-        if ( string.search( regex ) > -1 ) {
-            return true;
-        } else {
-            return false;
-        }
-    }
-
     function validURL( string ) {
         var pattern = new RegExp('^(https?:\\/\\/)?'+ // protocol
             '((([a-z\\d]([a-z\\d-]*[a-z\\d])*)\\.)+[a-z]{2,}|'+ // domain name
@@ -57,6 +48,7 @@ jQuery( document ).ready( function ( j ) {
             '(\\?[;&a-z\\d%_.~+=-]*)?'+ // query string
             '(\\#[-a-z\\d_]*)?$','i'); // fragment locater
         if(!pattern.test(string)) {
+            console.log("Does not pass validURL.");
             return false;
         } else {
             return true;
@@ -64,10 +56,6 @@ jQuery( document ).ready( function ( j ) {
     }
 
     function getResults( urlString ) {
-        if( !includesProtocol( urlString ) ) { 
-            var defaultProtocol = window.location.protocol;
-            urlString = defaultProtocol.concat( '//', urlString );
-        }
         var req_url = window.location.origin + '/wp-content/plugins/h-tag-checker/includes/lib/class-htc-api.php?u=' + encodeURIComponent(urlString);
         if( validURL(urlString) ) {
             j.ajax({
