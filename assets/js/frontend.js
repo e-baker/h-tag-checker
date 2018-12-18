@@ -2,27 +2,7 @@ jQuery( document ).ready( function ( j ) {
     keepCredits();
 	j('form#htc-form').submit( function( e ) {
         e.preventDefault();
-        var input = document.getElementById('htc-url').value;
-        if( !includesProtocol( input ) ) { 
-            var defaultProtocol = window.location.protocol;
-            var urlString = defaultProtocol.concat( '//', input );
-        }
-        var req_url = window.location.origin + '/wp-content/plugins/h-tag-checker/includes/lib/class-htc-api.php?u=' + encodeURIComponent(urlString);
-        if( validURL(urlString) && isAvailable(urlString) ) {
-            j.ajax({
-                type: "GET",
-                url: req_url,
-                success: function (response) {
-                    updateDivs( response );
-                    keepCredits();
-                },
-                error: function ( err_resp ) {
-                    console.log( 'Error: ' + err_resp.responseText );
-                }
-            });
-        } else {
-            updateDivs( "<h3>Please enter a valid URL.</h3>");
-        }
+        getResults();
     });
 
     function updateDivs( resp ) {
@@ -59,18 +39,27 @@ jQuery( document ).ready( function ( j ) {
         }
     }
 
-    function isAvailable( url ) {
-        var status = null;
-        j.ajax({
-            type: "GET",
-            url: url,
-            success: function (response) {
-                status = true;
-            },
-            error: function ( err_resp ) {
-                status = false;
-            }
-        })
-        return status;
+    function getResults() {
+        var input = document.getElementById('htc-url').value;
+        if( !includesProtocol( input ) ) { 
+            var defaultProtocol = window.location.protocol;
+            var urlString = defaultProtocol.concat( '//', input );
+        }
+        var req_url = window.location.origin + '/wp-content/plugins/h-tag-checker/includes/lib/class-htc-api.php?u=' + encodeURIComponent(urlString);
+        if( validURL(urlString) ) {
+            j.ajax({
+                type: "GET",
+                url: req_url,
+                success: function (response) {
+                    updateDivs( response );
+                    keepCredits();
+                },
+                error: function ( err_resp ) {
+                    console.log( 'Error: ' + err_resp.responseText );
+                }
+            });
+        } else {
+            updateDivs( "<h3>Please enter a valid URL.</h3>");
+        }
     }
 });
