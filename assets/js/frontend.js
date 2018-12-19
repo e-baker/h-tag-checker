@@ -30,8 +30,10 @@ jQuery( document ).ready( function ( j ) {
     }
 
     function updateDivs( resp ) {
-        document.getElementById('htc-results').innerHTML = resp;
-    }
+        var el = document.getElementById('htc-results');
+        el.innerHTML = resp;
+        el.scrollIntoView({behavior: 'smooth'});
+    }  
 
     function keepCredits( ) {
         var credits = j('div#htc-credits');
@@ -55,6 +57,10 @@ jQuery( document ).ready( function ( j ) {
         }
     }
 
+    function showResults() {
+        
+    }
+
     function getResults( urlString ) {
         var req_url = window.location.origin + '/wp-content/plugins/h-tag-checker/includes/lib/class-htc-api.php?u=' + encodeURIComponent(urlString);
         if( validURL(urlString) ) {
@@ -64,6 +70,7 @@ jQuery( document ).ready( function ( j ) {
                 success: function (response) {
                     updateDivs( response );
                     keepCredits();
+                    showResults();
                 },
                 error: function ( err_resp ) {
                     console.log( 'Error: ' + err_resp.responseText );
@@ -71,6 +78,7 @@ jQuery( document ).ready( function ( j ) {
             });
         } else {
             updateDivs( "<h3>Please enter a valid URL.</h3>");
+            
         }
     }
 });
